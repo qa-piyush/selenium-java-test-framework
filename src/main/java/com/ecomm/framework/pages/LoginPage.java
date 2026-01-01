@@ -3,9 +3,12 @@ package com.ecomm.framework.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import com.ecomm.framework.utils.ElementUtil;
+
 public class LoginPage {
 
 	private WebDriver driver;
+	private ElementUtil elementUtil;
 
 	private By usernameInput = By.id("user-name");
 	private By passwordInput = By.id("password");
@@ -14,17 +17,24 @@ public class LoginPage {
 
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
+		this.elementUtil = new ElementUtil(driver);
 	}
 
-	public void Login(String username, String password) {
-		driver.findElement(usernameInput).sendKeys(username);
-		driver.findElement(passwordInput).sendKeys(password);
-		driver.findElement(loginButton).click();
+	public void enterUsername(String username) {
+		elementUtil.doSendKeys(usernameInput, username);
+	}
+
+	public void enterPassword(String password) {
+		elementUtil.doSendKeys(passwordInput, password);
+	}
+
+	public HomePage clickLogin() {
+		elementUtil.doClick(loginButton);
+		return new HomePage(driver);
 	}
 
 	public String getErrorMsg() {
-
-		 return driver.findElement(errorMessage).getText();
+		return elementUtil.doGetText(errorMessage);
 	}
 
 }
