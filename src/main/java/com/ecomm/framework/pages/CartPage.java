@@ -1,0 +1,41 @@
+package com.ecomm.framework.pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+import com.ecomm.framework.utils.ElementUtil;
+
+public class CartPage {
+
+	private WebDriver driver;
+	private ElementUtil elementUtil;
+
+	private By cartItems = By.className("cart_item");
+	private By checkoutBtn = By.id("checkout");
+	private By continueShoppingBtn = By.id("continue-shopping");
+
+	public CartPage(WebDriver driver) {
+		this.driver = driver;
+		this.elementUtil = new ElementUtil(driver);
+	}
+
+	public int getCartItemCount() {
+		return driver.findElements(cartItems).size();
+	}
+
+	public boolean isProductInCart(String productName) {
+		By productNameInCart = By
+				.xpath("//div[@class='inventory_item_name' and normalize-space(.)='" + productName + "']");
+		return elementUtil.isElementDisplayed(productNameInCart);
+	}
+
+	public CheckoutStepOnePage goToCheckout() {
+		elementUtil.doClick(checkoutBtn);
+		return new CheckoutStepOnePage(driver);
+	}
+
+	public InventoryPage clickContineShopping() {
+		elementUtil.doClick(continueShoppingBtn);
+		return new InventoryPage(driver);
+	}
+}

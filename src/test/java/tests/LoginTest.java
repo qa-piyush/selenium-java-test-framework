@@ -2,7 +2,8 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import com.ecomm.framework.pages.HomePage;
+
+import com.ecomm.framework.pages.InventoryPage;
 import com.ecomm.framework.pages.LoginPage;
 
 public class LoginTest extends BaseTest {
@@ -12,9 +13,8 @@ public class LoginTest extends BaseTest {
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.enterUsername("standard_user");
 		loginPage.enterPassword("secret_sauce");
-		HomePage homepage = loginPage.clickLogin();
-		String currentUrl = driver.getCurrentUrl();
-		Assert.assertTrue(homepage.isHomePageLoaded(), "Home Page not loaded after login");
+		InventoryPage inventoryPage = loginPage.clickLogin();
+		Assert.assertTrue(inventoryPage.isHomePageLoaded(), "Home Page not loaded after login");
 	}
 
 	@Test

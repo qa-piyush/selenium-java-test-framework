@@ -28,9 +28,16 @@ public class LoginPage {
 		elementUtil.doSendKeys(passwordInput, password);
 	}
 
-	public HomePage clickLogin() {
+	public InventoryPage clickLogin() {
 		elementUtil.doClick(loginButton);
-		return new HomePage(driver);
+		return new InventoryPage(driver);
+	}
+
+	public InventoryPage doLogin(String username, String password) {
+		elementUtil.doSendKeys(usernameInput, username);
+		elementUtil.doSendKeys(passwordInput, password);
+		elementUtil.doClick(loginButton);
+		return new InventoryPage(driver);
 	}
 
 	public String getErrorMsg() {

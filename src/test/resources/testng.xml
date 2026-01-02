@@ -1,0 +1,15 @@
+<suite name="Swag Labs Test Suite">
+
+	<test name="Login Test">
+		<classes>
+			<class name="tests.LoginTest" />
+		</classes>
+	</test>
+	
+	<test name="Complete flow Test">
+		<classes>
+			<class name="tests.PurchaseTest" />
+		</classes>
+	</test>
+
+</suite>

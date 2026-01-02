@@ -1,6 +1,8 @@
 package com.ecomm.framework.utils;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 
 public class ElementUtil {
@@ -27,8 +29,23 @@ public class ElementUtil {
 		driver.findElement(locator).sendKeys(text);
 	}
 
+	public void doClickRetry(By locator, int retry) {
+		int attempts = 0;
+		while (attempts < retry) {
+			try {
+				WaitUtil.waitForVisibility(locator);
+				driver.findElement(locator).click();
+				//return;
+			} catch(StaleElementReferenceException | ElementClickInterceptedException e) {
+				attempts++;
+			}
+		}
+		throw new RuntimeException("Failed to click element after retries: " + locator);
+	}
+
 	public Boolean isElementDisplayed(By locator) {
 		WaitUtil.waitForPresence(locator);
 		return driver.findElement(locator).isDisplayed();
 	}
+
 }

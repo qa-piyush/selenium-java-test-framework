@@ -31,4 +31,9 @@ public class WaitUtil {
 	public static void waitForPresence(By Locator) {
 		getWait().until(ExpectedConditions.presenceOfElementLocated(Locator));
 	}
+	
+	public static void waitForInvisibility(By locator)
+	{
+		getWait().until(ExpectedConditions.invisibilityOfElementLocated(locator));
+	}
 }
