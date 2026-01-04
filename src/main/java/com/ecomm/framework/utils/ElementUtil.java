@@ -47,5 +47,4 @@ public class ElementUtil {
 		WaitUtil.waitForPresence(locator);
 		return driver.findElement(locator).isDisplayed();
 	}
-
 }

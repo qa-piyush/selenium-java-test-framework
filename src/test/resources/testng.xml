@@ -1,17 +1,24 @@
 <suite name="Swag Labs Test Suite">
 
-	<test name="Login Test">
+	<test name="Login and Logout Tests">
 		<classes>
 			<class name="tests.LoginTest" />
+			<class name="tests.LogoutTest" />
 		</classes>
 	</test>
-	
+
+	<test name="Cart Test">
+		<classes>
+			<class name="tests.CartTest" />
+		</classes>
+	</test>
+
 	<test name="Complete flow Test">
 		<classes>
 			<class name="tests.PurchaseTest" />
 		</classes>
 	</test>
-	
+
 	<test name="Negative Test">
 		<classes>
 			<class name="tests.CheckoutStepOnePageNegTest" />

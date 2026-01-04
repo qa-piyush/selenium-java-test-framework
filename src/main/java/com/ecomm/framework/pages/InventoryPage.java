@@ -12,6 +12,9 @@ public class InventoryPage {
 
 	private By inventoryItems = By.className("inventory_item");
 	private By cartIcon = By.className("shopping_cart_link");
+	private By menuBtn = By.id("react-burger-menu-btn");
+	private By logoutLink = By.id("logout_sidebar_link");
+	private By CartBadgeIconCount = By.className("shopping_cart_badge");
 
 	public InventoryPage(WebDriver driver) {
 		this.driver = driver;
@@ -31,10 +34,30 @@ public class InventoryPage {
 				"//div[normalize-space()='" + productName + "']" + "/ancestor::div[@class='inventory_item']//button");
 		elementUtil.doClick(addToCartBtn);
 	}
-
+	
+	public void removeItem(String productName) {
+		By removeFromCartBtn = By.xpath(
+				"//div[normalize-space()='" + productName + "']" + "/ancestor::div[@class='inventory_item']//button");
+		elementUtil.doClick(removeFromCartBtn);
+	}
+	
 	public CartPage goToCart() {
 		elementUtil.doClick(cartIcon);
 		return new CartPage(driver);
 	}
+	
+	public String getCartItemCount() {
+	return elementUtil.doGetText(CartBadgeIconCount);
+	}
 
+	public void doOpenMenu() {
+		elementUtil.doClick(menuBtn);
+	}
+
+	public LoginPage doLogout() {
+		elementUtil.doClick(logoutLink);
+		return new LoginPage(driver);
+	}
+
+	
 }

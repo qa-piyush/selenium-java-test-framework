@@ -24,9 +24,18 @@ public class CartPage {
 	}
 
 	public boolean isProductInCart(String productName) {
-		By productNameInCart = By
-				.xpath("//div[@class='inventory_item_name' and normalize-space(.)='" + productName + "']");
-		return elementUtil.isElementDisplayed(productNameInCart);
+		By producInCart = By.xpath("//div[@class='inventory_item_name' and normalize-space(.)='" + productName + "']");
+		return elementUtil.isElementDisplayed(producInCart);
+	}
+
+	public void removeItemFromCart(String productName) {
+		By removeProductFromCart = By
+				.xpath("//div[normalize-space(.)='Sauce Labs Backpack']/ancestor::div[@class='cart_item']//button");
+		elementUtil.doClick(removeProductFromCart);
+	}
+
+	public boolean isCartEmpty() {
+		return getCartItemCount()==0;
 	}
 
 	public CheckoutStepOnePage goToCheckout() {

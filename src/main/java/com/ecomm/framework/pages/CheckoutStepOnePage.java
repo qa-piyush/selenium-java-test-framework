@@ -32,7 +32,7 @@ public class CheckoutStepOnePage {
 		return elementUtil.doGetText(errorMsg);
 	}
 
-	public CheckoutStepTwoPage clickContinue() {
+	public CheckoutStepTwoPage submitCheckoutForm() {
 		elementUtil.doClick(continueBtn);
 		return new CheckoutStepTwoPage(driver);
 	}

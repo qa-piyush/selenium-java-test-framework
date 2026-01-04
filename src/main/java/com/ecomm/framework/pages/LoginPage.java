@@ -32,6 +32,10 @@ public class LoginPage {
 		elementUtil.doClick(loginButton);
 		return new InventoryPage(driver);
 	}
+	
+	public boolean isLoginButtonDisplayed() {
+		return elementUtil.isElementDisplayed(loginButton);
+	}
 
 	public InventoryPage doLogin(String username, String password) {
 		elementUtil.doSendKeys(usernameInput, username);

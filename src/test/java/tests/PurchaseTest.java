@@ -29,7 +29,7 @@ public class PurchaseTest extends BaseTest {
 		CheckoutStepOnePage checkoutStepOnePage = cartPage.goToCheckout();
 		checkoutStepOnePage.enterCheckoutInformation("Aman", "Sharma", "400001");
 
-		CheckoutStepTwoPage checkoutStepTwoPage = checkoutStepOnePage.clickContinue();
+		CheckoutStepTwoPage checkoutStepTwoPage = checkoutStepOnePage.submitCheckoutForm();
 		Assert.assertTrue(checkoutStepTwoPage.isProductPresent(productName),
 				"Product is not present in checkout step two page");
 
