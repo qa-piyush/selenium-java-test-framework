@@ -20,11 +20,16 @@ public class CheckoutStepOnePage {
 	private By postalCode = By.id("postal-code");
 	private By continueBtn = By.id("continue");
 	private By cancelBtn = By.id("cancel");
+	private By errorMsg = By.cssSelector("h3[data-test='error']");
 
 	public void enterCheckoutInformation(String fName, String lName, String zip) {
 		elementUtil.doSendKeys(firstName, fName);
 		elementUtil.doSendKeys(lastName, lName);
 		elementUtil.doSendKeys(postalCode, zip);
+	}
+
+	public String getErrorMsg() {
+		return elementUtil.doGetText(errorMsg);
 	}
 
 	public CheckoutStepTwoPage clickContinue() {

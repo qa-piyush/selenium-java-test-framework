@@ -11,5 +11,11 @@
 			<class name="tests.PurchaseTest" />
 		</classes>
 	</test>
+	
+	<test name="Negative Test">
+		<classes>
+			<class name="tests.CheckoutStepOnePageNegTest" />
+		</classes>
+	</test>
 
 </suite>

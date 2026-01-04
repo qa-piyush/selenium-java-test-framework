@@ -10,10 +10,9 @@ public class LoginTest extends BaseTest {
 
 	@Test
 	public void validLoginTest() {
+
 		LoginPage loginPage = new LoginPage(driver);
-		loginPage.enterUsername("standard_user");
-		loginPage.enterPassword("secret_sauce");
-		InventoryPage inventoryPage = loginPage.clickLogin();
+		InventoryPage inventoryPage = loginPage.doLogin("standard_user", "secret_sauce");
 		Assert.assertTrue(inventoryPage.isHomePageLoaded(), "Home Page not loaded after login");
 	}
 
