@@ -20,5 +20,16 @@ public class LogoutTest extends BaseTest {
 		Assert.assertTrue(loggedOutPage.isLoginButtonDisplayed(),
 				"Login button is not displayed");
 	}
+	@Test
+	public void checkSessionGuard() {
+		LoginPage loginPage = new LoginPage(driver);
+		InventoryPage inventoryPage = 
+				loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
+		
+		inventoryPage.doOpenMenu();
+		LoginPage loggedOutPage = inventoryPage.doLogout();
+		driver.get(prop.getProperty("url")+"//inventory.html");
+		Assert.assertTrue(loggedOutPage.isLoginButtonDisplayed(), "User is still on login page");
+	}
 
 }
