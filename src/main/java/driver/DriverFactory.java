@@ -29,6 +29,7 @@ public class DriverFactory {
 			options.setExperimentalOption("prefs", prefs);
 
 			driver = new ChromeDriver(options);
+			driver.manage().window().maximize();
 		}
 
 		else {

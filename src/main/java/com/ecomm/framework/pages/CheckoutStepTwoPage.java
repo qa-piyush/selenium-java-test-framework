@@ -10,7 +10,6 @@ public class CheckoutStepTwoPage {
 	private WebDriver driver;
 	private ElementUtil elementUtil;
 
-	private By cartItems = By.className("cart_list");
 	private By finishBtn = By.id("finish");
 	private By totalPrice = By.className("summary_total_label");
 
