@@ -12,7 +12,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverFactory {
 
-	public static WebDriver driver;
+	public static ThreadLocal<WebDriver> tldriver = new ThreadLocal<>();
 
 	public static void initDriver(Properties prop) {
 
@@ -20,6 +20,7 @@ public class DriverFactory {
 
 		if (browser.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
+			
 			ChromeOptions options = new ChromeOptions();
 			Map<String, Object> prefs = new HashMap<>();
 			prefs.put("credentials_enable_service", false);
@@ -28,22 +29,23 @@ public class DriverFactory {
 
 			options.setExperimentalOption("prefs", prefs);
 
-			driver = new ChromeDriver(options);
-			driver.manage().window().maximize();
+			tldriver.set(new ChromeDriver(options));
+			getDriver().manage().window().maximize();
 		}
 
 		else {
-			System.out.println("Please pass correct browser name: " + browser);
+			throw new RuntimeException("Unsupported browser: " + browser);
 		}
 	}
 
 	public static WebDriver getDriver() {
-		return driver;
+		return tldriver.get();
 	}
 
 	public static void quitDriver() {
-		if (driver != null) {
-			driver.quit();
+		if (getDriver() != null) {
+			getDriver().quit();
+			tldriver.remove();
 		}
 	}
 }

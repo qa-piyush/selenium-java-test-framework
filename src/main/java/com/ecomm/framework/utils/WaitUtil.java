@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import driver.DriverFactory;
+import exeptions.FrameworkException;
 
 public class WaitUtil {
 
@@ -20,20 +21,35 @@ public class WaitUtil {
 		return new WebDriverWait(getDriver(), Duration.ofSeconds(DEFAULT_TIMEOUT));
 	}
 
-	public static void waitForVisibility(By Locator) {
-		getWait().until(ExpectedConditions.visibilityOfElementLocated(Locator));
+	public static void waitForVisibility(By locator) {
+		try {
+			getWait().until(ExpectedConditions.visibilityOfElementLocated(locator));
+		} catch (Exception e) {
+			throw new FrameworkException("Unable to click element " + locator, e);
+		}
 	}
 
-	public static void waitForClickable(By Locator) {
-		getWait().until(ExpectedConditions.elementToBeClickable(Locator));
+	public static void waitForClickable(By locator) {
+		try {
+			getWait().until(ExpectedConditions.elementToBeClickable(locator));
+		} catch (Exception e) {
+			throw new FrameworkException("Unable to click element " + locator, e);
+		}
 	}
 
-	public static void waitForPresence(By Locator) {
-		getWait().until(ExpectedConditions.presenceOfElementLocated(Locator));
+	public static void waitForPresence(By locator) {
+		try {
+			getWait().until(ExpectedConditions.presenceOfElementLocated(locator));
+		} catch (Exception e) {
+			throw new FrameworkException("Unable to click element " + locator, e);
+		}
 	}
-	
-	public static void waitForInvisibility(By locator)
-	{
-		getWait().until(ExpectedConditions.invisibilityOfElementLocated(locator));
+
+	public static void waitForInvisibility(By locator) {
+		try {
+			getWait().until(ExpectedConditions.invisibilityOfElementLocated(locator));
+		} catch (Exception e) {
+			throw new FrameworkException("Element not visible within timeout: " + locator, e);
+		}
 	}
 }

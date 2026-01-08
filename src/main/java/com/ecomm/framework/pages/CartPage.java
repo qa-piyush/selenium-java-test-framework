@@ -30,7 +30,7 @@ public class CartPage {
 
 	public void removeItemFromCart(String productName) {
 		By removeProductFromCart = By
-				.xpath("//div[normalize-space(.)='Sauce Labs Backpack']/ancestor::div[@class='cart_item']//button");
+				.xpath("//div[normalize-space(.)='" + productName + "']/ancestor::div[@class='cart_item']//button");
 		elementUtil.doClick(removeProductFromCart);
 	}
 

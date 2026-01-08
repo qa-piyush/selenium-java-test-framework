@@ -1,28 +1,13 @@
-<suite name="Swag Labs Test Suite">
+<suite name="Swag Labs Test Suite" parallel="classes" thread-count="3">
 
-	<test name="Login and Logout Tests">
-		<classes>
-			<class name="tests.LoginTest" />
-			<class name="tests.LogoutTest" />
-		</classes>
-	</test>
-
-	<test name="Cart Test">
-		<classes>
-			<class name="tests.CartTest" />
-		</classes>
-	</test>
-
-	<test name="Complete flow Test">
-		<classes>
-			<class name="tests.PurchaseTest" />
-		</classes>
-	</test>
-
-	<test name="Negative Test">
-		<classes>
-			<class name="tests.CheckoutStepOnePageNegTest" />
-		</classes>
-	</test>
+	<test name="Regression Tests">
+        <classes>
+            <class name="tests.LoginTest"/>
+            <class name="tests.CartTest"/>
+            <class name="tests.LogoutTest"/>
+            <class name="tests.PurchaseTest"/>
+            <class name="tests.CheckoutStepOnePageNegTest"/>
+        </classes>
+    </test>
 
 </suite>

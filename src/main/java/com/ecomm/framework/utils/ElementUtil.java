@@ -5,6 +5,8 @@ import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 
+import exeptions.FrameworkException;
+
 public class ElementUtil {
 
 	private WebDriver driver;
@@ -14,19 +16,32 @@ public class ElementUtil {
 	}
 
 	public void doClick(By locator) {
-		WaitUtil.waitForClickable(locator);
-		driver.findElement(locator).click();
+		try {
+			WaitUtil.waitForClickable(locator);
+			driver.findElement(locator).click();
+		} catch (Exception e) {
+			throw new FrameworkException("Unable to click element " + locator, e);
+		}
 	}
 
 	public String doGetText(By locator) {
-		WaitUtil.waitForVisibility(locator);
-		return driver.findElement(locator).getText();
+		try {
+			WaitUtil.waitForVisibility(locator);
+			return driver.findElement(locator).getText();
+		} catch (Exception e) {
+			throw new FrameworkException("Unable to get text from element " + locator, e);
+		}
 	}
 
 	public void doSendKeys(By locator, String text) {
-		WaitUtil.waitForVisibility(locator);
-		driver.findElement(locator).clear();
-		driver.findElement(locator).sendKeys(text);
+		try {
+			WaitUtil.waitForVisibility(locator);
+			driver.findElement(locator).clear();
+			driver.findElement(locator).sendKeys(text);
+		} catch (Exception e) {
+			throw new FrameworkException
+			("Unable to send keys to the element " + locator + "and send keys" + text, e);
+		}
 	}
 
 	public void doClickRetry(By locator, int retry) {
@@ -35,16 +50,21 @@ public class ElementUtil {
 			try {
 				WaitUtil.waitForVisibility(locator);
 				driver.findElement(locator).click();
-				//return;
-			} catch(StaleElementReferenceException | ElementClickInterceptedException e) {
+				return;
+			} catch (StaleElementReferenceException | ElementClickInterceptedException e) {
 				attempts++;
 			}
 		}
-		throw new RuntimeException("Failed to click element after retries: " + locator);
+		throw new FrameworkException
+		("Failed to click element after retries: " + locator + "after" + retry + "retries");
 	}
 
 	public Boolean isElementDisplayed(By locator) {
-		WaitUtil.waitForPresence(locator);
-		return driver.findElement(locator).isDisplayed();
+		try {
+			WaitUtil.waitForPresence(locator);
+			return driver.findElement(locator).isDisplayed();
+		} catch (Exception e) {
+			throw new FrameworkException("Elment is not visible within timeout: " + locator, e);
+		}
 	}
 }
