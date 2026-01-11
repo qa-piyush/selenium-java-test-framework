@@ -1,5 +1,7 @@
 package com.ecomm.framework.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -28,6 +30,14 @@ public class CartPage {
 		return elementUtil.isElementDisplayed(producInCart);
 	}
 
+	public boolean areProductsInCart(List<String> productNames) {
+		for (String productName : productNames)
+			if(!isProductInCart(productName)) {
+		return false;
+			}
+		return true;
+	}
+
 	public void removeItemFromCart(String productName) {
 		By removeProductFromCart = By
 				.xpath("//div[normalize-space(.)='" + productName + "']/ancestor::div[@class='cart_item']//button");
@@ -35,7 +45,7 @@ public class CartPage {
 	}
 
 	public boolean isCartEmpty() {
-		return getCartItemCount()==0;
+		return getCartItemCount() == 0;
 	}
 
 	public CheckoutStepOnePage goToCheckout() {

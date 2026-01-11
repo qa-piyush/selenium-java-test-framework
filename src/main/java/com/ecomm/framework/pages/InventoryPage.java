@@ -1,5 +1,7 @@
 package com.ecomm.framework.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -33,6 +35,11 @@ public class InventoryPage {
 		By addToCartBtn = By.xpath(
 				"//div[normalize-space()='" + productName + "']" + "/ancestor::div[@class='inventory_item']//button");
 		elementUtil.doClick(addToCartBtn);
+	}
+	
+	public void addProductsToCart(List<String> productNames) {
+		for(String productName: productNames)
+		addProductToCart(productName);
 	}
 	
 	public void removeItem(String productName) {

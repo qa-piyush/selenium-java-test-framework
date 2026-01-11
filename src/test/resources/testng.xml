@@ -1,13 +1,13 @@
 <suite name="Swag Labs Test Suite" parallel="classes" thread-count="3">
 
 	<test name="Regression Tests">
-        <classes>
-            <class name="tests.LoginTest"/>
-            <class name="tests.CartTest"/>
-            <class name="tests.LogoutTest"/>
-            <class name="tests.PurchaseTest"/>
-            <class name="tests.CheckoutStepOnePageNegTest"/>
-        </classes>
-    </test>
+		<classes>
+			<class name="tests.LoginTest" />
+			<class name="tests.CartTest" />
+			<class name="tests.LogoutTest" />
+			<class name="tests.PurchaseTest" />
+			<class name="tests.CheckoutStepOnePageNegTest" />
+		</classes>
+	</test>
 
 </suite>

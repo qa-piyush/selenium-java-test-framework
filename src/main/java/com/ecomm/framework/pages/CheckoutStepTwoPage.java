@@ -1,5 +1,7 @@
 package com.ecomm.framework.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -22,6 +24,14 @@ public class CheckoutStepTwoPage {
 		By productNamePresent = By
 				.xpath("//div[@class='inventory_item_name' and normalize-space(.)='" + productName + "']");
 		return elementUtil.isElementDisplayed(productNamePresent);
+	}
+	
+	public boolean areProductsPresent(List<String> productNames) {
+		for(String productName : productNames )
+			if(!isProductPresent(productName)) {
+				return false;
+			}
+		return true;
 	}
 
 	public String geTotalPrice() {

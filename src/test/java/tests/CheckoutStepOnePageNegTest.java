@@ -1,5 +1,7 @@
 package tests;
 
+import java.util.List;
+
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -10,6 +12,12 @@ import flows.CheckoutFlow;
 
 public class CheckoutStepOnePageNegTest extends BaseTest {
 
+	List<String> products = List.of(
+	        "Sauce Labs Backpack",
+	        "Sauce Labs Bike Light",
+	        "Sauce Labs Bolt T-Shirt"
+	    );
+	
 	@Test(dataProvider = "negativeCheckoutData")
 	public void checkoutFlowErrorMsgValidation(
 			String firstName,
@@ -17,7 +25,7 @@ public class CheckoutStepOnePageNegTest extends BaseTest {
 			String postalCode,
 			String errorMessage) {
 		CheckoutFlow checkoutFlow = new CheckoutFlow(driver);
-		CheckoutStepOnePage checkoutStepOnePage = checkoutFlow.loginAndGoToCheckoutStepOnePage("Sauce Labs Backpack");
+		CheckoutStepOnePage checkoutStepOnePage = checkoutFlow.loginAndGoToCheckoutStepOnePage(products);
 
 		checkoutStepOnePage.enterCheckoutInformation(firstName, lastName, postalCode);
 		checkoutStepOnePage.submitCheckoutForm();

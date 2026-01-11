@@ -1,5 +1,7 @@
 package flows;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 
 import com.ecomm.framework.pages.CartPage;
@@ -15,11 +17,12 @@ public class CheckoutFlow {
 		this.driver = driver;
 	}
 
-	public CheckoutStepOnePage loginAndGoToCheckoutStepOnePage(String productName) {
+	public CheckoutStepOnePage loginAndGoToCheckoutStepOnePage(List<String> productNames) {
 		LoginPage loginPage = new LoginPage(driver);
 
 		InventoryPage inventoryPage = loginPage.doLogin("standard_user", "secret_sauce");
-		inventoryPage.addProductToCart(productName);
+		inventoryPage.addProductsToCart(productNames);
+		
 		CartPage cartPage = inventoryPage.goToCart();
 
 		return cartPage.goToCheckout();

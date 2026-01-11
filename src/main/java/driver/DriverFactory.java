@@ -20,7 +20,7 @@ public class DriverFactory {
 
 		if (browser.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
-			
+
 			ChromeOptions options = new ChromeOptions();
 			Map<String, Object> prefs = new HashMap<>();
 			prefs.put("credentials_enable_service", false);
