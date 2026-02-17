@@ -16,7 +16,7 @@ public class ExtentManager {
 			spark.config().setReportName("Swag Labs Automation Report");
 			spark.config().setDocumentTitle("Swag Labs Results");
 			spark.config().setTheme(Theme.DARK);
-
+			
 			extent = new ExtentReports();
 			extent.attachReporter(spark);
 		}

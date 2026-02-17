@@ -32,8 +32,8 @@ public class CartPage {
 
 	public boolean areProductsInCart(List<String> productNames) {
 		for (String productName : productNames)
-			if(!isProductInCart(productName)) {
-		return false;
+			if (!isProductInCart(productName)) {
+				return false;
 			}
 		return true;
 	}
